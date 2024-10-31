@@ -1,0 +1,10 @@
+//EBikeBooking
+trigger EBikeBooking on Ebike_Booking__c (After insert,after update) {
+
+    if(trigger.isAfter && ( trigger.isInsert || trigger.isupdate))
+    {
+    EBikeBookingHandler.sendEmailNotification(trigger.new);
+        }
+
+
+}
