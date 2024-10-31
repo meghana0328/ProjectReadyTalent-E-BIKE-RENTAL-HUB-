@@ -1,0 +1,16 @@
+// EBikeBookingHandler
+public class EBikeBookingHandler {
+    public static void sendEmailNotification (List<Ebike_Booking__c>ebikeList){
+        for(Ebike_Booking__c ebike:ebikeList)
+        {
+            Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+                email.setToAddresses( new List<String>{ebike.Email_Id__c});
+                email.setSubject('Welcome to our company');
+                string body = 'Dear ' +ebike.Name +', \n';   
+                body += 'Welcome to E-Bike Rental Hub! You have been seen as a valuable customer to us.\n Please continue your journey with us, while we try to provide you with good quality resources. \n EBike Amount = ' + ebike.Amount_c + ' \n Varient type = '+ebike.Varient_typec +' \n EBike type = '+ebike.EBike_Names_c;
+                email.setPlainTextBody(body);
+                Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{email});
+
+        }
+    }
+}
